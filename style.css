@@ -1,0 +1,671 @@
+.border-blue {
+    border: 1px solid var(--ai-blue) !important;
+}
+
+table td, table th {
+    padding: 12px;
+}
+
+.rtl {
+    direction: rtl;
+    font-family: var(--font-ar);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.pricing-card {
+    background: var(--bg-slate);
+    border: 1px solid var(--border-slate);
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--ai-blue);
+}
+
+.pricing-card.featured {
+    border: 2px solid var(--ai-blue);
+    background: linear-gradient(145deg, #161B22, #1c2128);
+}
+
+.featured-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--ai-blue);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.pack-header {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--ai-blue);
+    margin-bottom: 15px;
+}
+
+.pack-price {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.pack-price span {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.monthly-fee {
+    color: #2ea043;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.pack-features {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    text-align: right;
+}
+
+.pack-features li {
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.pack-target {
+    font-size: 12px;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border-slate);
+    padding-top: 15px;
+}
+.workflow-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-slate);
+    padding: 40px 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    border: 1px solid var(--border-slate);
+    flex-wrap: wrap; /* لضمان التوافق مع الهواتف */
+}
+
+.workflow-step {
+    text-align: center;
+    flex: 1;
+    min-width: 120px;
+    position: relative;
+}
+
+.step-icon {
+    font-size: 30px;
+    background: #0d1117;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    border: 2px solid var(--border-slate);
+    transition: all 0.3s ease;
+}
+
+.workflow-step:hover .step-icon {
+    border-color: var(--ai-blue);
+    transform: scale(1.1);
+}
+
+.step-label {
+    font-weight: bold;
+    color: var(--text-primary);
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.step-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.workflow-arrow {
+    color: var(--ai-blue);
+    font-size: 24px;
+    font-weight: bold;
+    padding-bottom: 30px;
+}
+
+/* تمييز مرحلة الـ AI */
+.featured-step .step-icon {
+    border-color: var(--ai-blue);
+    box-shadow: 0 0 15px rgba(56, 139, 253, 0.3);
+}
+
+/* تمييز مرحلة الربح */
+.win-step .step-icon {
+    border-color: #2ea043;
+    box-shadow: 0 0 15px rgba(46, 160, 67, 0.3);
+}
+
+@media (max-width: 768px) {
+    .workflow-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .workflow-arrow {
+        transform: rotate(90deg);
+        padding: 0;
+    }
+}
+/* ضبط عام للموبايل والكمبيوتر */
+* {
+  box-sizing: border-box; /* كيهنينا من مشكل الـ Padding اللي كيخرج العناصر برا */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* كيمنع السكرول الجانبي بمرة */
+  width: 100%;
+}
+
+.page {
+  width: 100%;
+  max-width: 1000px; /* العرض الأقصى باش ما تبقاش الهضرة مشتتة فالمونيتورات الكبار */
+  margin: 0 auto;
+  padding: 20px;
+  word-wrap: break-word; /* باش الكلمات الطويلة ما تهرسش الإطار */
+}
+.content-page {
+    padding: 40px 20px; /* توحيد الهوامش */
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.card {
+    background: var(--bg-slate);
+    border: 1px solid var(--border-slate);
+    padding: 25px; /* نفس الدخلة ديال كاع الصناديق */
+    border-radius: 12px;
+    width: 100%; /* باش ما يخرجش */
+    box-sizing: border-box; /* كيهنينا من مشكل العرض */
+}
+
+.sub-section {
+    margin-bottom: 20px;
+    padding-right: 15px;
+    border-right: 2px solid var(--border-slate); /* لمسة جمالية للتقسيم */
+}
+
+.rtl {
+    direction: rtl;
+    text-align: right;
+}
+/* تحسينات بصرية عامة */
+.roadmap-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.roadmap-item {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-slate);
+    padding: 20px;
+    border-radius: 12px;
+    position: relative;
+    border-top: 4px solid var(--ai-blue);
+}
+
+.roadmap-item h3 {
+    color: var(--ai-blue);
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+
+.q-badge {
+    background: var(--ai-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+/* تحسين الجداول والباكات */
+.featured-pack {
+    border: 2px solid #ffca28 !important;
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+.price-tag {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2ea043;
+}
+
+.commission-table tr:hover {
+    background: rgba(56, 139, 253, 0.05);
+}
+/* تحسين وضوح النصوص في كل مكان */
+.page p, .page li, .page td, .step-desc {
+    color: #FFFFFF !important; /* أبيض ناصع عوض الرمادي */
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* تفتيح نصوص الصناديق */
+.card p, .roadmap-item p {
+    color: #E6EDF3 !important;
+}
+
+/* تقوية ألوان العناوين */
+h2.section-title {
+    color: #388BFD !important; /* أزرق مشع */
+    border-bottom: 2px solid #388BFD;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+h3, h4 {
+    color: #388BFD !important;
+    font-weight: 600;
+}
+
+/* تحسين مظهر الباقات (Pricing) */
+.price-tag {
+    color: #2ea043 !important; /* أخضر واضح للثمن */
+    font-size: 28px !important;
+    text-shadow: 0 0 10px rgba(46, 160, 67, 0.2);
+}
+
+.monthly-fee {
+    color: #388BFD !important;
+    font-weight: bold;
+}
+
+/* تحسين الـ Roadmap لتفادي اللون الباهت */
+.roadmap-item {
+    background: #161B22 !important; /* خلفية أغمق لتبين الكتابة */
+    border: 1px solid #30363D !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.q-badge {
+    color: #ffffff !important;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* تصفية الجدول */
+.commission-table th {
+    background: rgba(56, 139, 253, 0.1);
+    color: #388BFD !important;
+}
+body {
+    background-color: #0D1117;
+    color: #E6EDF3;
+    font-family: 'Poppins', 'Tajawal', sans-serif;
+}
+/* Team Grid Layout */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.team-card {
+    background: #161B22;
+    border: 1px solid #30363D;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    border-color: #388BFD;
+}
+
+.team-avatar {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.team-card h3 {
+    color: #FFFFFF !important;
+    font-size: 1.1rem;
+    margin: 10px 0 5px 0;
+}
+
+.role {
+    color: #388BFD !important;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.desc {
+    font-size: 0.85rem;
+    color: #8B949E !important;
+    line-height: 1.5;
+}
+
+/* Commission Badges */
+.commission-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(56, 139, 253, 0.1);
+    color: #388BFD;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: bold;
+    border: 1px solid #388BFD;
+}
+
+.tech-group {
+    border-left: 4px solid #388BFD;
+}
+
+.support-group {
+    border-left: 4px solid #ffca28;
+}
+
+.support-group .commission-badge {
+    color: #ffca28;
+    border-color: #ffca28;
+    background: rgba(255, 202, 40, 0.1);
+}
+
+.team-card.highlight {
+    border: 2px solid #388BFD;
+    background: linear-gradient(145deg, #1c2128, #0d1117);
+}
+@media print {
+  body { -webkit-print-color-adjust: exact; }
+  .page { page-break-after: always; }
+}
+/* Cover Page Specific Styles */
+.cover-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* باش تاخد الطول الكامل ديال الشاشة */
+    text-align: center;
+    background: linear-gradient(180deg, #0d1117 0%, #161B22 100%); /* خلفية متدرجة فخمة */
+    position: relative;
+    overflow: hidden; /* لمنع ظهور أي scrollbar غير مرغوب فيه */
+}
+
+.cover-content {
+    padding: 20px;
+    max-width: 800px;
+    width: 100%;
+    z-index: 10; /* باش تكون فوق أي Background Effect */
+}
+
+.logo-placeholder {
+    margin-bottom: 30px;
+}
+
+.cover-title {
+    font-size: 4.5rem; /* حجم كبير للعنوان */
+    color: #FFFFFF;
+    margin: 0;
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(56, 139, 253, 0.4); /* توهج خفيف */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+.cover-subtitle {
+    font-size: 1.8rem;
+    color: #388BFD;
+    margin-top: 15px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 500;
+}
+
+.cover-date {
+    font-size: 1.2rem;
+    color: #8B949E;
+    margin-top: 30px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.cover-author {
+    margin-top: 60px;
+    color: #E6EDF3;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-family: 'Tajawal', sans-serif;
+}
+
+.cover-author strong {
+    color: #FFFFFF;
+    font-size: 1.3rem;
+}
+
+/* Print specific for cover page */
+@media print {
+    .cover-page {
+        page-break-after: always; /* ضروري باش تكون صفحة بوحدها */
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+    }
+}
+/* TOC STYLES */
+.toc-container {
+    background: rgba(56, 139, 253, 0.05);
+    border: 1px solid var(--border-slate);
+    border-radius: 12px;
+    padding: 30px;
+    margin-top: 20px;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-list li {
+    margin-bottom: 15px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-bottom: 8px;
+    transition: 0.3s;
+}
+
+.toc-list li:last-child {
+    border-bottom: none;
+}
+
+.toc-list a {
+    text-decoration: none;
+    color: #E6EDF3;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-family: 'Tajawal', sans-serif;
+}
+
+.toc-list a:hover {
+    color: var(--ai-blue);
+    padding-right: 10px; /* حركة خفيفة عند التحويم */
+}
+
+.toc-number {
+    color: var(--ai-blue);
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    background: rgba(56, 139, 253, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+    min-width: 30px;
+    text-align: center;
+}
+
+/* سلاسة التنقل (Smooth Scroll) */
+html {
+    scroll-behavior: smooth;
+}
+html {
+    scroll-behavior: smooth;
+}
+.value-container .card h3 {
+    margin-top: 0;
+    color: #FFFFFF !important;
+}
+
+.value-container ul li {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.quote-box p {
+    color: #E6EDF3 !important;
+    line-height: 1.6;
+}
+.pdf-footer {
+    margin-top: 50px;
+    padding: 30px 0;
+    border-top: 1px solid #30363D;
+    color: #8B949E;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: left;
+    font-size: 12px;
+}
+
+.footer-logo {
+    color: #388BFD !important;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.contact-info p {
+    margin: 5px 0;
+}
+
+.legal-copy {
+    text-align: right;
+}
+
+/* لتحسين المظهر في الطباعة */
+@media print {
+    .pdf-footer {
+        position: relative;
+        bottom: 0;
+        width: 100%;
+    }
+}
+/* --- تحسينات عامة للموبايل واللابتوب --- */
+
+/* 1. ضبط الحاوية الكبيرة */
+.page {
+    width: 95% !important; /* كيولي ياخد عرض الشاشة كامل فالموبايل */
+    max-width: 900px !important; /* كيبقى مجموع فاللابتوب */
+    margin: 20px auto !important;
+    padding: 20px !important;
+    height: auto !important; /* حيد الطول الثابت باش ما يخرجش النص */
+    min-height: auto !important;
+}
+
+/* 2. تحويل الـ Grids من صفوف لأعمدة فالموبايل */
+@media (max-width: 768px) {
+    /* الفهرس (TOC) */
+    .toc-list a {
+        font-size: 0.95rem;
+        gap: 10px;
+    }
+
+    /* الباقات (Pricing) والـ Team والـ Grid */
+    .pricing-grid, .team-grid, .grid, .workflow-container {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+
+    /* الـ Workflow Arrows (الأسهم) */
+    .workflow-arrow {
+        transform: rotate(90deg); /* الأسهم تولي كتشوف لتحت فالموبايل */
+        margin: 10px 0;
+    }
+
+    /* العناوين */
+    .section-title {
+        font-size: 1.4rem !important;
+    }
+
+    .cover-title {
+        font-size: 3rem !important;
+    }
+
+    .cover-subtitle {
+        font-size: 1.2rem !important;
+    }
+
+    /* الجداول (Commissions) */
+    table {
+        display: block;
+        overflow-x: auto; /* إضافة سكرول عرضي للجداول باش ما تخرجش */
+        white-space: nowrap;
+    }
+}
+
+/* 3. إصلاح صفحة الغلاف (Cover Page) */
+.cover-page {
+    height: auto !important;
+    min-height: 100vh;
+    padding: 40px 20px !important;
+}
+
+/* 4. الحفاظ على شكل الطباعة (A4) فاش نبغيو نخرجو PDF */
+@media print {
+    .page {
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 0 !important;
+        padding: 15mm !important;
+        page-break-after: always;
+    }
+    
+    .workflow-arrow {
+        transform: none !important; /* نرجعو الأسهم لأصلها فالطباعة */
+    }
+}
