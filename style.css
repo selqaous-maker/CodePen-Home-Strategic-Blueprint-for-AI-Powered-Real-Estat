@@ -165,169 +165,100 @@ table td, table th {
     box-shadow: 0 0 15px rgba(46, 160, 67, 0.3);
 }
 
+@/* --- Desktop & Mobile Optimization --- */
+
+/* تعديل الحاوية الكبيرة لتكون مرنة */
+.page {
+    width: 90% !important;
+    max-width: 950px !important;
+    height: auto !important; /* ضروري باش الصفحة تطوال على حساب المحتوى */
+    min-height: auto !important;
+    margin: 20px auto !important;
+    padding: 30px 20px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* إصلاح صفحة الغلاف للموبايل */
+.cover-page {
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* تعديل الـ Grids فالموبايل */
 @media (max-width: 768px) {
-    .workflow-container {
-        flex-direction: column;
-        gap: 20px;
+    /* إخفاء خلفيات الورقة الثابتة باش ميبقاش الفراغ */
+    body {
+        padding: 10px 0 !important;
+    }
+
+    /* تحويل أي Grid أو Flex لعمودي */
+    .pricing-grid, 
+    .team-grid, 
+    .grid, 
+    .workflow-container,
+    .footer-content {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+
+    /* تكبير العرض فالموبايل */
+    .page {
+        width: 95% !important;
+        padding: 20px 15px !important;
+        margin: 10px auto !important;
+    }
+
+    /* تصحيح الأسهم في الـ Workflow */
+    .workflow-arrow {
+        transform: rotate(90deg) !important; /* السهم كيشوف لتحت */
+        margin: 10px 0 !important;
+        font-size: 24px !important;
+    }
+
+    /* تصغير العناوين باش متخرجش على السطر */
+    .cover-title {
+        font-size: 3rem !important;
+    }
+    
+    .section-title {
+        font-size: 1.3rem !important;
+    }
+
+    /* إصلاح الجداول - يولي عندها سكرول لليمن */
+    .card {
+        overflow-x: auto !important;
+    }
+    
+    table {
+        min-width: 500px; /* باش ميتزاحمش الكلام فوسط الجدول */
+    }
+
+    /* إخفاء العناصر الزايدة اللي كتخسر العرض */
+    .logo-placeholder svg {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* الحفاظ على جودة الطباعة (PDF) بلا ما نخسرو الموقع */
+@media print {
+    .page {
+        width: 21cm !important;
+        height: 29.7cm !important;
+        margin: 0 !important;
+        padding: 2cm !important;
+        page-break-after: always;
+        border-radius: 0;
     }
     .workflow-arrow {
-        transform: rotate(90deg);
-        padding: 0;
+        transform: none !important;
     }
-}
-/* ضبط عام للموبايل والكمبيوتر */
-* {
-  box-sizing: border-box; /* كيهنينا من مشكل الـ Padding اللي كيخرج العناصر برا */
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden; /* كيمنع السكرول الجانبي بمرة */
-  width: 100%;
-}
-
-.page {
-  width: 100%;
-  max-width: 1000px; /* العرض الأقصى باش ما تبقاش الهضرة مشتتة فالمونيتورات الكبار */
-  margin: 0 auto;
-  padding: 20px;
-  word-wrap: break-word; /* باش الكلمات الطويلة ما تهرسش الإطار */
-}
-.content-page {
-    padding: 40px 20px; /* توحيد الهوامش */
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.card {
-    background: var(--bg-slate);
-    border: 1px solid var(--border-slate);
-    padding: 25px; /* نفس الدخلة ديال كاع الصناديق */
-    border-radius: 12px;
-    width: 100%; /* باش ما يخرجش */
-    box-sizing: border-box; /* كيهنينا من مشكل العرض */
-}
-
-.sub-section {
-    margin-bottom: 20px;
-    padding-right: 15px;
-    border-right: 2px solid var(--border-slate); /* لمسة جمالية للتقسيم */
-}
-
-.rtl {
-    direction: rtl;
-    text-align: right;
-}
-/* تحسينات بصرية عامة */
-.roadmap-container {
-    display: flex;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.roadmap-item {
-    flex: 1;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--border-slate);
-    padding: 20px;
-    border-radius: 12px;
-    position: relative;
-    border-top: 4px solid var(--ai-blue);
-}
-
-.roadmap-item h3 {
-    color: var(--ai-blue);
-    margin-top: 0;
-    font-size: 1.2rem;
-}
-
-.q-badge {
-    background: var(--ai-blue);
-    color: white;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 10px;
-    margin-bottom: 10px;
-    display: inline-block;
-}
-
-/* تحسين الجداول والباكات */
-.featured-pack {
-    border: 2px solid #ffca28 !important;
-    transform: scale(1.05);
-    z-index: 10;
-}
-
-.price-tag {
-    font-size: 24px;
-    font-weight: bold;
-    color: #2ea043;
-}
-
-.commission-table tr:hover {
-    background: rgba(56, 139, 253, 0.05);
-}
-/* تحسين وضوح النصوص في كل مكان */
-.page p, .page li, .page td, .step-desc {
-    color: #FFFFFF !important; /* أبيض ناصع عوض الرمادي */
-    font-weight: 400;
-    line-height: 1.6;
-}
-
-/* تفتيح نصوص الصناديق */
-.card p, .roadmap-item p {
-    color: #E6EDF3 !important;
-}
-
-/* تقوية ألوان العناوين */
-h2.section-title {
-    color: #388BFD !important; /* أزرق مشع */
-    border-bottom: 2px solid #388BFD;
-    padding-bottom: 10px;
-    margin-bottom: 30px;
-    font-weight: 700;
-}
-
-h3, h4 {
-    color: #388BFD !important;
-    font-weight: 600;
-}
-
-/* تحسين مظهر الباقات (Pricing) */
-.price-tag {
-    color: #2ea043 !important; /* أخضر واضح للثمن */
-    font-size: 28px !important;
-    text-shadow: 0 0 10px rgba(46, 160, 67, 0.2);
-}
-
-.monthly-fee {
-    color: #388BFD !important;
-    font-weight: bold;
-}
-
-/* تحسين الـ Roadmap لتفادي اللون الباهت */
-.roadmap-item {
-    background: #161B22 !important; /* خلفية أغمق لتبين الكتابة */
-    border: 1px solid #30363D !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-.q-badge {
-    color: #ffffff !important;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-/* تصفية الجدول */
-.commission-table th {
-    background: rgba(56, 139, 253, 0.1);
-    color: #388BFD !important;
-}
-body {
-    background-color: #0D1117;
-    color: #E6EDF3;
-    font-family: 'Poppins', 'Tajawal', sans-serif;
 }
 /* Team Grid Layout */
 .team-grid {
@@ -668,4 +599,109 @@ html {
     .workflow-arrow {
         transform: none !important; /* نرجعو الأسهم لأصلها فالطباعة */
     }
+}
+/* تحسين وضوح النصوص في كل مكان */
+.page p, .page li, .page td, .step-desc {
+    color: #FFFFFF !important; /* أبيض ناصع عوض الرمادي */
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* تفتيح نصوص الصناديق */
+.card p, .roadmap-item p {
+    color: #E6EDF3 !important;
+}
+
+/* تقوية ألوان العناوين */
+h2.section-title {
+    color: #388BFD !important; /* أزرق مشع */
+    border-bottom: 2px solid #388BFD;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+h3, h4 {
+    color: #388BFD !important;
+    font-weight: 600;
+}
+
+/* تحسين مظهر الباقات (Pricing) */
+.price-tag {
+    color: #2ea043 !important; /* أخضر واضح للثمن */
+    font-size: 28px !important;
+    text-shadow: 0 0 10px rgba(46, 160, 67, 0.2);
+}
+
+.monthly-fee {
+    color: #388BFD !important;
+    font-weight: bold;
+}
+
+/* تحسين الـ Roadmap لتفادي اللون الباهت */
+.roadmap-item {
+    background: #161B22 !important; /* خلفية أغمق لتبين الكتابة */
+    border: 1px solid #30363D !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.q-badge {
+    color: #ffffff !important;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* تصفية الجدول */
+.commission-table th {
+    background: rgba(56, 139, 253, 0.1);
+    color: #388BFD !important;
+}
+/* تحسينات بصرية عامة */
+.roadmap-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.roadmap-item {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-slate);
+    padding: 20px;
+    border-radius: 12px;
+    position: relative;
+    border-top: 4px solid var(--ai-blue);
+}
+
+.roadmap-item h3 {
+    color: var(--ai-blue);
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+
+.q-badge {
+    background: var(--ai-blue);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+/* تحسين الجداول والباكات */
+.featured-pack {
+    border: 2px solid #ffca28 !important;
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+.price-tag {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2ea043;
+}
+
+.commission-table tr:hover {
+    background: rgba(56, 139, 253, 0.05);
 }
